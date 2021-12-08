@@ -65,33 +65,38 @@ class Solution{
     public:
         vector<int> solve(vector<int> &,vector<int> &,vector<int> &);
 };
-vector<int> Solution::solve(vector<int> &A, vector<int> &B, vector<int> &C) {
+vector<int> Solution::solve(vector<int> &a, vector<int> &b, vector<int> &c) {
+    set<int> sa(a.begin(),a.end());
+    set<int> sb(b.begin(),b.end());
+    set<int> sc(c.begin(),c.end());
+    set<int> :: iterator set_itr;
     unordered_map<int,int> frequency_table;
     vector<int> ans;
-    for(int i=0;i<A.size();i++){
-        if(frequency_table.find(A[i])==frequency_table.end()){
-            frequency_table[A[i]]=1;
+
+    for(set_itr=sa.begin();set_itr!=sa.end();set_itr++){
+        if(frequency_table.find(*set_itr)==frequency_table.end()){
+            frequency_table[*set_itr]=1;
         }
     }
-    for(int i=0;i<B.size();i++){
-        if(frequency_table.find(B[i]) == frequency_table.end())
+    for(set_itr=sb.begin();set_itr!=sb.end();set_itr++){
+        if(frequency_table.find(*set_itr) == frequency_table.end())
         {
-            frequency_table[B[i]]=1;
+            frequency_table[*set_itr]=1;
         }
         else
         {
-            frequency_table[B[i]]=2;
+            frequency_table[*set_itr]=2;
         }
     }
-    for(int i=0;i<C.size();i++)
+    for(set_itr=sc.begin();set_itr!=sc.end();set_itr++)
     {
-        if(frequency_table.find(C[i]) == frequency_table.end())
+        if(frequency_table.find(*set_itr) == frequency_table.end())
         {
-            frequency_table[C[i]]=1;
+            frequency_table[*set_itr]=1;
         }
         else
         {
-            frequency_table[C[i]]=2;
+            frequency_table[*set_itr]=2;
         }
     }
     unordered_map<int,int>:: iterator itr;
@@ -101,4 +106,13 @@ vector<int> Solution::solve(vector<int> &A, vector<int> &B, vector<int> &C) {
 	}
     sort(ans.begin(),ans.end());
     return ans;
+}
+
+int main(){
+    vector<int> a={2,9,8,7,6,4,5,9};
+    set<int> sa(a.begin(),a.end());
+    set<int> :: iterator itr;
+    for(itr = sa.begin();itr != sa.end();itr++){
+        cout<<*itr<<"\n";
+    }
 }

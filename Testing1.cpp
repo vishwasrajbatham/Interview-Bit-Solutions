@@ -1,70 +1,75 @@
-// C++ program to demonstrate functionality of unordered_map
+// CPP program to demonstrate various functions of
+// Set in C++ STL
 #include <iostream>
-#include <unordered_map>
+#include <iterator>
+#include <set>
+
 using namespace std;
 
 int main()
 {
-	// Declaring umap to be of <string, double> type
-	// key will be of string type and mapped value will
-	// be of double type
-	unordered_map<string, double> umap;
+	// empty set container
+	set<int, greater<int> > s1;
 
-	// inserting values by using [] operator
-	umap["PI"] = 3.14;
-	umap["root2"] = 1.414;
-	umap["root3"] = 1.732;
-	umap["log10"] = 2.302;
-	umap["loge"] = 1.0;
+	// insert elements in random order
+	s1.insert(40);
+	s1.insert(30);
+	s1.insert(60);
+	s1.insert(20);
+	s1.insert(50);
 
-	// inserting value by insert function
-	umap.insert(make_pair("e", 2.718));
+	// only one 50 will be added to the set
+	s1.insert(50);
+	s1.insert(10);
 
-	string key = "PI";
-
-	// If key not found in map iterator to end is returned
-	if (umap.find(key) == umap.end())
-		cout << key << " not found\n\n";
-
-	// If key found then iterator to that key is returned
-	else
-		cout << "Found " << key << "\n\n";
-
-	key = "lambda";
-	if (umap.find(key) == umap.end())
-		cout << key << " not found\n";
-	else
-		cout << "Found " << key << endl;
-
-	// iterating over all value of umap
-    
-	unordered_map<string, double>:: iterator itr;
-	cout << "\nAll Elements : \n";
-	for (itr = umap.begin(); itr != umap.end(); itr++)
-	{
-		// itr works as a pointer to pair<string, double>
-		// type itr->first stores the key part and
-		// itr->second stores the value part
-		cout << itr->first << " " << itr->second << endl;
+	// printing set s1
+	set<int, greater<int> >::iterator itr;
+	cout << "\nThe set s1 is : \n";
+	for (itr = s1.begin(); itr != s1.end(); itr++) {
+		cout << *itr << " ";
 	}
+	cout << endl;
+
+	// assigning the elements from s1 to s2
+	set<int> s2(s1.begin(), s1.end());
+
+	// print all elements of the set s2
+	cout << "\nThe set s2 after assign from s1 is : \n";
+	for (itr = s2.begin(); itr != s2.end(); itr++) {
+		cout << *itr << " ";
+	}
+	cout << endl;
+
+	// remove all elements up to 30 in s2
+	cout << "\ns2 after removal of elements less than 30 "
+			":\n";
+	s2.erase(s2.begin(), s2.find(30));
+	for (itr = s2.begin(); itr != s2.end(); itr++) {
+		cout << *itr << " ";
+	}
+
+	// remove element with value 50 in s2
+	int num;
+	num = s2.erase(50);
+	cout << "\ns2.erase(50) : ";
+	cout << num << " removed\n";
+	for (itr = s2.begin(); itr != s2.end(); itr++) {
+		cout << *itr << " ";
+	}
+
+	cout << endl;
+
+	// lower bound and upper bound for set s1
+	cout << "s1.lower_bound(40) : \n"
+		<< *s1.lower_bound(40) << endl;
+	cout << "s1.upper_bound(40) : \n"
+		<< *s1.upper_bound(40) << endl;
+
+	// lower bound and upper bound for set s2
+	cout << "s2.lower_bound(40) :\n"
+		<< *s2.lower_bound(40) << endl;
+	cout << "s2.upper_bound(40) : \n"
+		<< *s2.upper_bound(40) << endl;
+
+	return 0;
 }
-
-/*
-at(): This function in C++ unordered_map returns the reference to the value with the element as key k.
-
-begin(): Returns an iterator pointing to the first element in the container in the unordered_map container
-
-end(): Returns an iterator pointing to the position past the last element in the container in the unordered_map 
-       container
-
-bucket(): Returns the bucket number where the element with the key k is located in the map.
-
-bucket_count: bucket_count is used to count the total no. of buckets in the unordered_map. No parameter is required 
-              to pass into this function.
-
-bucket_size: Returns the number of elements in each bucket of the unordered_map.
-
-count(): Count the number of elements present in an unordered_map with a given key.
-
-equal_range: Return the bounds of a range that includes all the elements in the container with a key that compares 
-             equal to k.*/
