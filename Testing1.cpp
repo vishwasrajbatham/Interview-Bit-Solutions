@@ -1,5 +1,4 @@
-// CPP program to demonstrate various functions of
-// Set in C++ STL
+/* CPP program to demonstrate various functions of Set in C++ STL
 #include <iostream>
 #include <iterator>
 #include <set>
@@ -71,5 +70,15 @@ int main()
 	cout << "s2.upper_bound(40) : \n"
 		<< *s2.upper_bound(40) << endl;
 
+	return 0;
+}*/
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+	string a="Vishwas";
+	string b = a;
+	sort(b.begin(),b.end());
+	cout<<b;
 	return 0;
 }
