@@ -3,20 +3,20 @@ using namespace std;
 
 void heapify(vector <int> &A, int n, int i)
 {
-    int largest = i;
+    int smallest = i;
     int left_child = (2*i)+1;
     int right_child = (2*i)+2;
 
-    if(left_child<n && A[left_child]>A[largest])
-        largest = left_child;
+    if(left_child<n && A[left_child]<A[smallest])
+        smallest = left_child;
 
-    if(right_child<n && A[right_child]>A[largest])
-        largest=right_child;
+    if(right_child<n && A[right_child]<A[smallest])
+        smallest=right_child;
 
-    if(largest!=i)
+    if(smallest!=i)
     {
-        swap(A[i],A[largest]);
-        heapify(A,n,largest);
+        swap(A[i],A[smallest]);
+        heapify(A,n,smallest);
     }
 }
 
@@ -33,10 +33,12 @@ void heap_sort(vector <int> &A, int n)
 }
 
 int main(){
-    vector <int> A={7,9,5,44,89,88,62,3,596,12};
-    int n=10;
+    vector<int> A={468,335,569};
+    int n=A.size();
     heap_sort(A,n);
-    for(int i=0;i<10;i++){
+    vector<int> reslt;
+    //cout<<A[1]<<"\t"<<A[0]<<"\t";
+    for(int i=0;i<n;i++){
         cout<<A[i]<<"\t";
     }
     return 0;
