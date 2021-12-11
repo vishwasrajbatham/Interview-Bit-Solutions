@@ -74,11 +74,47 @@ int main()
 }*/
 #include<bits/stdc++.h>
 using namespace std;
+
+class Solution{
+    public:
+        vector<int> Solution::solve(vector<vector<int> > &);
+};
+
+#define pi pair< int, pair<int, int> >
+vector<int> Solution::solve(vector<vector<int> > &a) {
+    priority_queue<pi, vector<pi>, greater<pi>> minHeap;
+    int k = a.size(), n = a[0].size();
+    for ( int i = 0; i < k; ++i ) {
+        minHeap.push( {a[i][0], {i, 0} } );
+    }
+    vector<int> ans;
+    while ( !minHeap.empty() ) {
+        pi x = minHeap.top();
+        minHeap.pop();
+        ans.push_back( x.first );
+        int arr = x.second.first;
+        int ind = x.second.second;
+        ++ind;
+        if ( ind < n ) {
+            minHeap.push( { a[arr][ind], { arr, ind } } );
+        }
+    }
+    return ans;
+}
+
 int main()
 {
-	string a="Vishwas";
-	string b = a;
-	sort(b.begin(),b.end());
-	cout<<b;
+	vector<vector<int> > A = {{1, 2, 3},{2, 4, 6},{0, 9, 10},{8,6,4}};
+	int k=A.size();
+	int n=A[0].size();
+	//cout<<k<<"\t"<<n<<endl;
+	sort(A.begin(),A.end());
+	for(int i=0;i<k;i++){
+		for(int j=0;j<n;j++){
+			cout<<A[i][j]<<"\t";
+		}
+		cout<<"\n";
+	}
+	cout<<A[2][0];
 	return 0;
 }

@@ -3,12 +3,12 @@ using namespace std;
 
 class Solution{
     public:
-        int solve(vector<int> &, int);
+        vector<int> Solution::solve(vector<vector<int> > &);
 };
 
 void heapify(vector <int> &A, int n, int i)
 {
-    int largest = i;        
+    int largest = i;
     int left_child = (2*i)+1;
     int right_child = (2*i)+2;
 
@@ -37,21 +37,10 @@ void heap_sort(vector <int> &A, int n)
     }
 }
 
-
-int Solution::solve(vector<int> &A, int B) {
-    int cost=0;
-    int n=A.size();
-    for(int i=0;i<B;i++){
-        heap_sort(A,n);
-        cost+=A[n-1];
-        A[n-1]--;
-    }
-    return cost;
+vector<int> Solution::solve(vector<vector<int> > &A) {
 }
 
 int main(){
     Solution obj;
-    vector<int> Seats={2,3};
-    cout<<obj.solve(Seats, 3);
     return 0;
 }
