@@ -75,7 +75,7 @@ int main()
 #include<bits/stdc++.h>
 using namespace std;
 
-class Solution{
+/*class Solution{
     public:
         vector<int> Solution::solve(vector<vector<int> > &);
 };
@@ -116,5 +116,15 @@ int main()
 		cout<<"\n";
 	}
 	cout<<A[2][0];
+	return 0;
+}*/
+
+int main(){
+	/*string A="25";
+	int b=stoi(A)-9;
+	cout<<b;*/
+	string A="9865";
+	string d="100000";
+	cout<<(A<d);
 	return 0;
 }
