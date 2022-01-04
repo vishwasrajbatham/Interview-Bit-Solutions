@@ -120,11 +120,7 @@ int main()
 }*/
 
 int main(){
-	/*string A="25";
-	int b=stoi(A)-9;
-	cout<<b;*/
-	string A="9865";
-	string d="100000";
-	cout<<(A<d);
+	for(int i=0;i<9;i++)	cout<<i;
+	cout<<"Abhau";
 	return 0;
 }
