@@ -120,7 +120,6 @@ int main()
 }*/
 
 int main(){
-	for(int i=0;i<9;i++)	cout<<i;
-	cout<<"Abhau";
+	for(int i=0;i<9;i++)	cout<<i<<"\n";
 	return 0;
 }
