@@ -120,6 +120,8 @@ int main()
 }*/
 
 int main(){
-	for(int i=0;i<9;i++)	cout<<i<<"\n";
+	//for(int i=0;i<0;i++)	cout<<i<<"\n";
+	cout<<INT_MIN;
+	cout<<INT_MIN;
 	return 0;
 }
