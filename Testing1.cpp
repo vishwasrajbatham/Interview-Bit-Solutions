@@ -121,7 +121,28 @@ int main()
 
 int main(){
 	//for(int i=0;i<0;i++)	cout<<i<<"\n";
-	cout<<INT_MIN;
-	cout<<INT_MIN;
-	return 0;
+	vector<int> A={2,1,6,4};
+	int n=A.size();
+	vector<int> preodd,preven,postodd(n),poeteven(n);
+	int pre_odd_sum=0,pre_even_sum=0,post_odd_sum=0,post_even_sum=0;
+	//for pre odd
+	for(int i=0;i<n;i++){
+		preodd.push_back(pre_odd_sum);
+		preven.push_back(pre_even_sum);
+		if(i%2!=0)  pre_odd_sum+=A[i];
+		else  pre_even_sum+=A[i];
+	}
+	for(int i=n-1;i>=0;i--){
+		postodd[i]=post_odd_sum;
+		poeteven[i]=post_even_sum;
+		if(i%2!=0)  post_odd_sum+=A[i];
+		else	post_even_sum+=A[i];
+	}
+	/*for(int i=0;i<n;i++)	cout<<preodd[i]<<"\t";cout<<endl;
+	for(int i=0;i<n;i++)	cout<<postodd[i]<<"\t";cout<<endl;
+	for(int i=0;i<n;i++)	cout<<preven[i]<<"\t";cout<<endl;
+	for(int i=0;i<n;i++)	cout<<poeteven[i]<<"\t";	*/
+	int c=0;
+	for(int i=0;i<n;i++)	if( (preodd[i]+poeteven[i]) == (postodd[i]+preven[i]) )	c++;
+	return c;
 }
