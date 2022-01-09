@@ -72,10 +72,10 @@ int main()
 
 	return 0;
 }*/
-#include<bits/stdc++.h>
+/*#include<bits/stdc++.h>
 using namespace std;
 
-/*class Solution{
+class Solution{
     public:
         vector<int> Solution::solve(vector<vector<int> > &);
 };
@@ -118,31 +118,71 @@ int main()
 	cout<<A[2][0];
 	return 0;
 }*/
+#include <string>
+#include<iostream>
 
-int main(){
-	//for(int i=0;i<0;i++)	cout<<i<<"\n";
-	vector<int> A={2,1,6,4};
-	int n=A.size();
-	vector<int> preodd,preven,postodd(n),poeteven(n);
-	int pre_odd_sum=0,pre_even_sum=0,post_odd_sum=0,post_even_sum=0;
-	//for pre odd
-	for(int i=0;i<n;i++){
-		preodd.push_back(pre_odd_sum);
-		preven.push_back(pre_even_sum);
-		if(i%2!=0)  pre_odd_sum+=A[i];
-		else  pre_even_sum+=A[i];
+using namespace std;
+
+char intTochar(int i)
+{
+    return 'a'+i-1;
+}
+
+int charToint(char c)
+{
+    return c-'0';
+}
+
+int getCodes(string ip, string op[10000]) 
+{
+   if(ip.length()==1)
+   {
+       op[0]=ip[0]+'0';
+       return 1;
+   } 
+   string op1[5000],op2[5000]="";
+   int s1=getCodes(ip.substr(1),op1);
+   int s2=0;
+   for(int i=0;i<s1;i++)
+   {
+       int y=charToint(ip[0]);
+       char c=intTochar(y);
+       op[i]=c+op1[i];
+   }
+
+   int x=(charToint(ip[0])*10+charToint(ip[1]));
+
+   if(ip.length()>2)
+       if(x>=10&&x<=26)
+       s2=getCodes(ip.substr(2),op2);
+
+	if(ip.length()==2)
+	{ char c=intTochar(x);
+		if(x>=10&&x<=26)
+	op[s1]=c+op2[1];
+	s2++;
+
 	}
-	for(int i=n-1;i>=0;i--){
-		postodd[i]=post_odd_sum;
-		poeteven[i]=post_even_sum;
-		if(i%2!=0)  post_odd_sum+=A[i];
-		else	post_even_sum+=A[i];
-	}
-	/*for(int i=0;i<n;i++)	cout<<preodd[i]<<"\t";cout<<endl;
-	for(int i=0;i<n;i++)	cout<<postodd[i]<<"\t";cout<<endl;
-	for(int i=0;i<n;i++)	cout<<preven[i]<<"\t";cout<<endl;
-	for(int i=0;i<n;i++)	cout<<poeteven[i]<<"\t";	*/
-	int c=0;
-	for(int i=0;i<n;i++)	if( (preodd[i]+poeteven[i]) == (postodd[i]+preven[i]) )	c++;
-	return c;
+
+    for(int i=0;i<s2;i++)
+       {
+           char c=intTochar(x);
+           op[i+s1]=c+op2[i];
+           
+       }
+
+	return s1+s2;
+
+}
+
+int main()
+{
+    string ip;
+    cin>>ip;
+	string *op=new string[1000];
+  
+    int len=getCodes(ip,op);
+
+    for(int i=0;i<len;i++)    cout<<op[i]<<endl;
+	return 0;
 }
