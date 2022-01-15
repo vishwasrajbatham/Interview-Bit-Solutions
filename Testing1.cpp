@@ -1,5 +1,5 @@
-/* CPP program to demonstrate various functions of Set in C++ STL
-#include <iostream>
+// CPP program to demonstrate various functions of Set in C++ STL
+/*#include <iostream>
 #include <iterator>
 #include <set>
 
@@ -72,6 +72,7 @@ int main()
 
 	return 0;
 }*/
+// CPP program to demonstrate various functions of priority queue and pair in C++ STL
 /*#include<bits/stdc++.h>
 using namespace std;
 
@@ -118,71 +119,17 @@ int main()
 	cout<<A[2][0];
 	return 0;
 }*/
-#include <string>
-#include<iostream>
-
+#include <bits/stdc++.h>
 using namespace std;
-
-char intTochar(int i)
-{
-    return 'a'+i-1;
+pair<int,int> ret(int a=2,int b=3){
+	return make_pair(a,b);
 }
-
-int charToint(char c)
-{
-    return c-'0';
-}
-
-int getCodes(string ip, string op[10000]) 
-{
-   if(ip.length()==1)
-   {
-       op[0]=ip[0]+'0';
-       return 1;
-   } 
-   string op1[5000],op2[5000]="";
-   int s1=getCodes(ip.substr(1),op1);
-   int s2=0;
-   for(int i=0;i<s1;i++)
-   {
-       int y=charToint(ip[0]);
-       char c=intTochar(y);
-       op[i]=c+op1[i];
-   }
-
-   int x=(charToint(ip[0])*10+charToint(ip[1]));
-
-   if(ip.length()>2)
-       if(x>=10&&x<=26)
-       s2=getCodes(ip.substr(2),op2);
-
-	if(ip.length()==2)
-	{ char c=intTochar(x);
-		if(x>=10&&x<=26)
-	op[s1]=c+op2[1];
-	s2++;
-
-	}
-
-    for(int i=0;i<s2;i++)
-       {
-           char c=intTochar(x);
-           op[i+s1]=c+op2[i];
-           
-       }
-
-	return s1+s2;
-
-}
-
 int main()
 {
-    string ip;
-    cin>>ip;
-	string *op=new string[1000];
-  
-    int len=getCodes(ip,op);
-
-    for(int i=0;i<len;i++)    cout<<op[i]<<endl;
+    /*string ip="A";
+	cout<<ip[0] -'A'+1<<"\n";
+	pair<int,int> res=ret();
+	cout<<res.first<<"\t"<<res.second;*/
+	cout<<INT_MIN;
 	return 0;
 }

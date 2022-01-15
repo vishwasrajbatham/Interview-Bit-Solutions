@@ -1,3 +1,4 @@
+//https://www.interviewbit.com/problems/subarray-with-b-odd-numbers/
 /*Problem Description
 
 Given an array of integers A and an integer B.
