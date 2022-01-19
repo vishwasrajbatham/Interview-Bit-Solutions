@@ -121,15 +121,19 @@ int main()
 }*/
 #include <bits/stdc++.h>
 using namespace std;
-pair<int,int> ret(int a=2,int b=3){
+/*pair<int,int> ret(int a=2,int b=3){
 	return make_pair(a,b);
+}*/
+
+int ret_sum(int i=0,int n=0){
+	if(i>n)	return 0;
+	return (ret_sum(i+1,n)+i);
 }
+
 int main()
-{
-    /*string ip="A";
-	cout<<ip[0] -'A'+1<<"\n";
-	pair<int,int> res=ret();
-	cout<<res.first<<"\t"<<res.second;*/
-	cout<<INT_MIN;
+{	
+	int n;
+	cin>>n;
+	cout<<ret_sum(0,n);
 	return 0;
 }
