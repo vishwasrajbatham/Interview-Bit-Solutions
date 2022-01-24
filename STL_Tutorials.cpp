@@ -1,4 +1,5 @@
 //Illustrate the working of pairs
+//Example1
 /*class Solution {
     public:
     
@@ -33,9 +34,9 @@
     }
 };
 */
-//ordered maps->sorted data
-//unordered maps->unsorted random data
-//Illustrate the working of maps   
+
+//Working of maps  
+//ordered maps->sorted data || unordered maps->unsorted random data 
 /*Maps are associative containers that store elements in a mapped fashion. Each element has a key value and a mapped value. No two mapped values can have same key values.
 
 Some basic functions associated with Map:
@@ -200,7 +201,8 @@ map::operator[] in C++ STL– This operator is used to reference the element pre
 map::clear() in C++ STL– Removes all the elements from the map.
 map::at() and map::swap() in C++ STL– at() function is used to return the reference to the element associated with the key k. swap() function is used to exchange the contents of two maps but the maps must be of same type, although sizes may differ.
 */
-//Illustrate the working of unordered maps
+//Working of unordered maps
+//Example1
 /*
 #include <iostream>
 #include <unordered_map>
@@ -224,6 +226,7 @@ int main()
 
 }
 */
+//Example 2
 /*
 #include <iostream>
 #include <unordered_map>
@@ -274,7 +277,9 @@ int main()
 	}
 }
 */
+
 //Illustrate the working of Sets
+//Example1  
 /*
 #include <iostream>
 #include <iterator>
@@ -349,4 +354,87 @@ int main()
 
 	return 0;
 }
-*/
+// CPP program to demonstrate various functions of priority queue and pair in C++ STL
+/*#include<bits/stdc++.h>
+using namespace std;
+
+class Solution{
+    public:
+        vector<int> Solution::solve(vector<vector<int> > &);
+};
+
+#define pi pair< int, pair<int, int> >
+vector<int> Solution::solve(vector<vector<int> > &a) {
+    priority_queue<pi, vector<pi>, greater<pi>> minHeap;
+    int k = a.size(), n = a[0].size();
+    for ( int i = 0; i < k; ++i ) {
+        minHeap.push( {a[i][0], {i, 0} } );
+    }
+    vector<int> ans;
+    while ( !minHeap.empty() ) {
+        pi x = minHeap.top();
+        minHeap.pop();
+        ans.push_back( x.first );
+        int arr = x.second.first;
+        int ind = x.second.second;
+        ++ind;
+        if ( ind < n ) {
+            minHeap.push( { a[arr][ind], { arr, ind } } );
+        }
+    }
+    return ans;
+}
+
+int main()
+{
+	vector<vector<int> > A = {{1, 2, 3},{2, 4, 6},{0, 9, 10},{8,6,4}};
+	int k=A.size();
+	int n=A[0].size();
+	//cout<<k<<"\t"<<n<<endl;
+	sort(A.begin(),A.end());
+	for(int i=0;i<k;i++){
+		for(int j=0;j<n;j++){
+			cout<<A[i][j]<<"\t";
+		}
+		cout<<"\n";
+	}
+	cout<<A[2][0];
+	return 0;
+}*/
+
+#include<bits/stdc++.h>
+using namespace std;
+
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) 
+    {
+        vector<pair<int,int>> cp; 
+        vector<int> ans;
+        for(int i=0;i<nums.size();i++){
+            cp.push_back(make_pair(nums[i],i));
+        }
+        sort(cp.begin(),cp.end());
+        int i=0,j=cp.size();
+        while(true){
+            if(cp[i].first+cp[j].first==target)
+            {
+                ans.push_back(cp[i].second);
+                ans.push_back(cp[j].second);
+                return ans;
+            }
+            else if(nums[i]+nums[j]>target) j--;
+            else    i++;
+        }
+        return ans;
+    }
+};
+
+int main(){
+    vector<int> a={2,7,9,11},b;
+    int target=9;
+    Solution o;
+    b=o.twoSum(a,target);
+    cout<<b[0]<<" "<<b[1];
+    return 0;
+}
