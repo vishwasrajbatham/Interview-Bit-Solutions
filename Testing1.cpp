@@ -1,55 +1,58 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
-
 struct ListNode {
-    int val;
-    ListNode *next;
-    ListNode() : val(0), next(nullptr) {}
-    ListNode(int x) : val(x), next(nullptr) {}
-    ListNode(int x, ListNode *next) : val(x), next(next) {}
+      int val;
+      ListNode *next;
+      ListNode(int x) : val(x), next(NULL) {}
 };
+int merge(int arr[],int temp[],int left,int mid,int right)
+{
+    int inv_count=0;
+    int i = left;
+    int j = mid;
+    int k = left;
+    while((i <= mid-1) && (j <= right)){
+        if(arr[i] <= arr[j]){
+            temp[k++] = arr[i++];
+        }
+        else
+        {
+            temp[k++] = arr[j++];
+            inv_count = inv_count + (mid - i);
+        }
+    }
 
-class Solution {
-public:
-    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
-		int carry=0,sum=0;
-		ListNode *head,*tail,*newnode;
-		tail=NULL;
-		head=NULL;
-		while(l1 != NULL || l2 != NULL ){
-			newnode = new ListNode();
+    while(i <= mid - 1)
+        temp[k++] = arr[i++];
 
-			if(tail != NULL)	tail->next=newnode;
+    while(j <= right)
+        temp[k++] = arr[j++];
 
-			if(head==NULL)	head = newnode;
+    for(i = left ; i <= right ; i++)
+        arr[i] = temp[i];
+    
+    return inv_count;
+}
 
-			if(l1 !=NULL && l2 !=NULL){
-				sum=carry+l1->val+l2->val;
-				carry=sum%10;
-			}
-			else if(l1 ==NULL && l2 !=NULL){
-				sum=carry+l2->val;
-				carry=sum%10;
-			}
-			else{
-				sum=carry+l2->val;
-				carry=sum%10;
-			}
-			newnode->val=sum%10;
-			tail=newnode;
-		}
-		if(carry!=0){
-			ListNode *newnode;
-			newnode = new ListNode();
-			tail->next=newnode;
-			newnode->val=carry;
-		}
-		return head;
-	}
-};
+int merge_Sort(int arr[],int temp[],int left,int right)
+{
+    int mid,inv_count = 0;
+    if(right > left)
+    {
+        mid = (left + right)/2;
+        inv_count += merge_Sort(arr,temp,left,mid);
+        inv_count += merge_Sort(arr,temp,mid+1,right);
+        inv_count += merge(arr,temp,left,mid+1,right);
+    }
+    return inv_count;
+}
 
 int main()
-{	
-	cout<<"Abhi";
-	return 0;
+{
+    int arr[]={5,3,2,1,4};
+    int n=5;
+    int temp[n];
+    int ans = merge_Sort(arr,temp,0,n-1);
+    cout<<"The total inversions are "<<ans<<endl; 
+    return 0;
 }
